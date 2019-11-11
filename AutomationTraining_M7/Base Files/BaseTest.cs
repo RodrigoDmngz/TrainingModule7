@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,14 @@ namespace AutomationTraining_M7.Base_Files {
         public static IWebDriver driver;
         private static string BrowserName = ConfigurationManager.AppSettings.Get("url");
 
+        [SetUp]
         public static void SetUp()
         {
             driver = new ChromeDriver();
             driver.Url = BrowserName;
         }
+
+        [TearDown]
         public static void AfterTest()
         {
             driver.Close();
